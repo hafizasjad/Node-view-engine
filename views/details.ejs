@@ -9,7 +9,9 @@
     <div class="content">
         <p><%= blogs.body%></p>
     </div>
-    <a class="delete" data-doc="<%=blogs._id%>">delete</a>
+    <a class="delete" data-doc="<%=blogs._id%>">
+        <i class="fas fa-trash"></i>
+    </a>
     
   </div>
 
@@ -18,13 +20,14 @@
   <script>
     const trashcan = document.querySelector('a.delete');
 
-    trashcan.addEventListener('click' , (e)=>{
+    trashcan.addEventListener('click' , (e) => {
         const endpoint = `/blogs/${trashcan.dataset.doc}`;
 
         fetch(endpoint ,{
-            method : "DELETE"
+            method : 'DELETE'
         })
         .then((response)=> response.json())
+        // .then((data)=> console.log(data))
         .then((data)=> window.location.href = data.redirect)
         .catch(err=>{
             console.log(err);
